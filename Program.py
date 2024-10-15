@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import Core as cr
 
 root = Tk()
 root.title("Verbali Excel")
@@ -30,9 +31,7 @@ def setFileComuni():
     file_comuni.set(str)       
    
 def elabora():
-    print("in: "+input_path)
-    print("out: "+output_path)
-    print("file:" + file_comuni)
+   cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
 
 root.columnconfigure(0,weight=1)
 root.columnconfigure(1,weight=1)
@@ -83,7 +82,7 @@ frameFileComuni_buttonInput.pack()
 
 #quinta riga, progressbar
 frameProgressbar = Frame(root)
-progressbar = ttk.Progressbar(frameProgressbar, orient='horizontal', length=500)
+progressbar =  ttk.Progressbar(frameProgressbar, orient='horizontal', mode="determinate", length=500)
 progressbar.pack()
 
 #sesta riga, bottone elabora 
