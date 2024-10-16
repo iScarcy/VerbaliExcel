@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import os
 import Core as cr
 
 root = Tk()
@@ -16,7 +17,7 @@ root.maxsize(1920,1900)
 input_path = StringVar()
 output_path = StringVar()
 file_comuni = StringVar()
-
+err         = StringVar()   
  
 def setInputPath():
     str=filedialog.askdirectory()
@@ -31,7 +32,23 @@ def setFileComuni():
     file_comuni.set(str)       
    
 def elabora():
-   cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
+   try:
+    if not os.path.exists(input_path.get()):
+       raise Exception("Attenzione la cartella di input non esiste")
+    if not os.path.exists(output_path.get()):
+       raise Exception("Attenzione la cartella di output non esiste")
+    if not os.path.isfile(file_comuni.get()):
+       raise Exception("Attenzione il file dei comuni indicato non esiste")
+    if not (file_comuni.get().endswith(".xlsx")):
+       raise Exception("Attenzione il file comuni selezionato non è un file excel") 
+   
+    frameProgressbar_labelERR.pack_forget()
+    cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
+   
+   except Exception as e:
+    err.set(f"Errore: {e}") 
+    frameProgressbar_labelERR.pack()
+    
 
 root.columnconfigure(0,weight=1)
 root.columnconfigure(1,weight=1)
@@ -83,7 +100,9 @@ frameFileComuni_buttonInput.pack()
 #quinta riga, progressbar
 frameProgressbar = Frame(root)
 progressbar =  ttk.Progressbar(frameProgressbar, orient='horizontal', mode="determinate", length=500)
-progressbar.pack()
+progressbar.pack_forget()
+frameProgressbar_labelERR=Label(frameProgressbar, fg="red" , textvariable=err, font=("Helvetica",18))
+frameProgressbar_labelERR.pack_forget()
 
 #sesta riga, bottone elabora 
 frameElabora = Frame(root)
