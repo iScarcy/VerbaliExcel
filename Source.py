@@ -17,7 +17,7 @@ class SourceRow:
     targa : str
     dataNotifica : datetime
     annoRiferimento : str
-    importoSansioniRuolo : decimal
+    importoSanzioniRuolo : decimal
     importoSpese : decimal
 
     def __init__(self, rowSource : set):
@@ -30,7 +30,7 @@ class SourceRow:
         self.nome        =   row["nome"] 
         self.sesso       =   row["sesso"]
         self.dataNascita =   row["data_nascita"]  
-        self.comuneNascita =   row["comune_mascita"] 
+        self.comuneNascita =   row["comune_nascita"] 
         self.statoNascita =   row["stato_nascita"]   
         self.codiceFiscale = row["codice_fiscale"]
         self.residenza = row["residenza"]
@@ -38,5 +38,5 @@ class SourceRow:
         self.targa = row["targa"]
         self.dataNotifica = row["data_notifica"]
         self.annoRiferimento = row["anno_riferimento"]
-        self.importoSansioniRuolo = row["importo_sansioni_ruolo"]
+        self.importoSanzioniRuolo = row["importo_sanzioni_ruolo"]
         self.importoSpese = row["importo_spese"]

@@ -3,7 +3,7 @@ from tkinter import ttk
 import pandas as pd
 import os
 from Verbale import VerbaleRow as vb
-
+from Source import SourceRow as sr
 def elabora(inputPath : str,outputPath : str, fileComuni : str, pb : ttk.Progressbar):
    
     files = os.listdir(inputPath) 
@@ -16,8 +16,9 @@ def elabora(inputPath : str,outputPath : str, fileComuni : str, pb : ttk.Progres
                 print(filename)
                 df = pd.read_excel(inputPath + "/" + filename)
                 for index,row in df.iterrows():
-                    verbale = vb(row)
-                    print(verbale.cognome)
+                    source = sr(row)
+                    verbale = vb(source)
+                     
                 pb["value"] += increment 
                 continue
             else:
