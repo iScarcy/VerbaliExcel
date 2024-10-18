@@ -8,12 +8,12 @@ class SourceRow:
     cognome : str
     nome : str
     sesso : str
-    dataNascita : datetime 
+    dataNascita : str
     comuneNascita : str
     statoNascita : str
     codiceFiscale : str
     residenza : str
-    dataViolazione : datetime
+    dataViolazione : str
     targa : str
     dataNotifica : datetime
     annoRiferimento : str
