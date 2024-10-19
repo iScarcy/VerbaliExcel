@@ -64,11 +64,7 @@ class VerbaleRow:
         
         date_format = "%d/%m/%Y"
         date_formatEN = "%Y/%m/%d"
-        # Attempt to convert string to datetime
-
-       
-         
-       
+        
         try:
             date_object = datetime.strptime(row.dataNotifica, date_format)
         except:
@@ -102,43 +98,44 @@ class VerbaleRow:
         self.motivazioneAtto = "ANZIONE RELATIVA AL VERBALE NR. " + row.verbale_id +" NOTIFICATO IL " + row.dataNotifica;
         self.canale = "CC-RMMESSI"
         
-        self.Soggetto1_CodiceFiscale = row.codiceFiscale
-        self.Soggetto1_Cognome = row.cognome
-        self.Soggetto1_Nome = row.nome; 
-        self.Soggetto1_IndirizzoCodiceBelfiore = datiResidenza.codice
-        self.Soggetto1_Indirizzo = indirizzo
-        self.Soggetto1_IndirizzoNumero = numero
-        self.Soggetto1_IndirizzoCAP = cap
-        self.Soggetto1_IndirizzoComune = comune
-        self.Soggetto1_IndirizzoSiglaProvincia = datiResidenza.provincia
-        self.Soggetto1_NascitaCodiceBelfiore = datiNascita.codice
+        self.soggetto1_CodiceFiscale = row.codiceFiscale
+        self.soggetto1_Cognome = row.cognome
+        self.soggetto1_Nome = row.nome; 
+        self.soggetto1_IndirizzoCodiceBelfiore = datiResidenza.codice
+        self.soggetto1_Indirizzo = indirizzo
+        self.soggetto1_IndirizzoNumero = numero
+        self.soggetto1_IndirizzoCAP = cap
+        self.soggetto1_IndirizzoComune = comune
+        self.soggetto1_IndirizzoSiglaProvincia = datiResidenza.provincia
+        self.soggetto1_NascitaCodiceBelfiore = datiNascita.codice
 
        
-        
-        self.Soggetto1_NascitaComune = datiNascita.comune
-        self.Soggetto1_NascitaSiglaProvincia = datiNascita.provincia;
-        self.Soggetto1_Natura = "1";
-        self.Soggetto1_Sesso = row.sesso;
+        self.soggetto1_NascitaData = dateNascita_object.strftime("%Y%m%d")
+        self.soggetto1_NascitaComune = datiNascita.comune
+        self.soggetto1_NascitaSiglaProvincia = datiNascita.provincia;
+        self.soggetto1_Natura = "1";
+        self.soggetto1_Sesso = row.sesso;
 
-        self.Soggetto2_CodiceFiscale = row.codiceFiscale
-        self.Soggetto2_Cognome = row.cognome
-        self.Soggetto2_Nome = row.nome; 
-        self.Soggetto2_IndirizzoCodiceBelfiore = datiResidenza.codice
-        self.Soggetto2_Indirizzo = indirizzo
-        self.Soggetto2_IndirizzoNumero = numero
-        self.Soggetto_IndirizzoCAP = cap
-        self.Soggetto2_IndirizzoComune = comune
-        self.Soggetto2_IndirizzoSiglaProvincia = datiResidenza.provincia
-        self.Soggetto2_NascitaCodiceBelfiore = datiNascita.codice
-        self.Soggetto2_NascitaData = dateNascita_object.strftime("%Y%m%d")
-        self.Soggetto2_NascitaComune = datiNascita.comune
-        self.Soggetto2_NascitaSiglaProvincia = datiNascita.provincia;
-        self.Soggetto2_Natura = "1";
-        self.Soggetto2_Sesso = row.sesso;
+        self.soggetto2_CodiceFiscale = row.codiceFiscale
+        self.soggetto2_Cognome = row.cognome
+        self.soggetto2_Nome = row.nome; 
+        self.soggetto2_IndirizzoCodiceBelfiore = datiResidenza.codice
+        self.soggetto2_Indirizzo = indirizzo
+        self.soggetto2_IndirizzoNumero = numero
+        self.soggetto_IndirizzoCAP = cap
+        self.soggetto2_IndirizzoComune = comune
+        self.soggetto2_IndirizzoSiglaProvincia = datiResidenza.provincia
+        self.soggetto2_NascitaCodiceBelfiore = datiNascita.codice
+        self.soggetto2_NascitaData = dateNascita_object.strftime("%Y%m%d")
+        self.soggetto2_NascitaComune = datiNascita.comune
+        self.soggetto2_NascitaSiglaProvincia = datiNascita.provincia;
+        self.soggetto2_Natura = "1";
+        self.soggetto2_Sesso = row.sesso;
 
         self.Tributo1_Codice = "1D80";
         self.Trributo1_Totale = row.importoSanzioniRuolo;
         self.Tributo2_Codice = "1F03";
+
     
  
     
