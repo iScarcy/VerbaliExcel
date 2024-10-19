@@ -8,14 +8,14 @@ class SourceRow:
     cognome : str
     nome : str
     sesso : str
-    dataNascita : str
+    dataNascita : datetime
     comuneNascita : str
     statoNascita : str
     codiceFiscale : str
     residenza : str
     dataViolazione : str
     targa : str
-    dataNotifica : datetime
+    dataNotifica : str
     annoRiferimento : str
     importoSanzioniRuolo : decimal
     importoSpese : decimal
@@ -29,14 +29,15 @@ class SourceRow:
         self.cognome     =   row["cognome"] 
         self.nome        =   row["nome"] 
         self.sesso       =   row["sesso"]
-        self.dataNascita =   row["data_nascita"]  
+       # self.dataNascita =  row["data_nascita"]
+        self.dataNascita =  str(row["data_nascita"]).replace("-","/").replace("00:00:00","").strip()  
         self.comuneNascita =   row["comune_nascita"] 
         self.statoNascita =   row["stato_nascita"]   
         self.codiceFiscale = row["codice_fiscale"]
         self.residenza = row["residenza"]
-        self.dataViolazione = row["data_violazione"]
+        self.dataViolazione = str(row["data_violazione"]).replace("-","/").replace("00:00:00","").strip()
         self.targa = row["targa"]
-        self.dataNotifica = row["data_notifica"]
+        self.dataNotifica = str(row["data_notifica"]).replace("-","/").replace("00:00:00","").strip()
         self.annoRiferimento = row["anno_riferimento"]
         self.importoSanzioniRuolo = row["importo_sanzioni_ruolo"]
         self.importoSpese = row["importo_spese"]

@@ -59,18 +59,30 @@ class VerbaleRow:
 
     def __init__(self, row : SourceRow, comuni: dict):
         self.protocollo = row.verbale_id
-        self.annoDebito = row.verbale_id[-4:] #TODO PRENDERE GLI ULTRIMI 4 CARATTERI
+        self.annoDebito = row.verbale_id[-4:] 
         self.codTipoAtto = "VE"
         
         date_format = "%d/%m/%Y"
+        date_formatEN = "%Y/%m/%d"
         # Attempt to convert string to datetime
-          
-        date_object = datetime.strptime(row.dataNotifica, date_format)
-        dateNascita_object = datetime.strptime(row.dataNascita, date_format)
 
-        self.dataAtto = date_object.strftime('%Y%m%d'); # dataNotifica.ToString("yyyyMMdd"));
-        self.dataNotificaAtto = date_object.strftime('%Y%m%d')
+       
+         
+       
+        try:
+            date_object = datetime.strptime(row.dataNotifica, date_format)
+        except:
+            date_object = datetime.strptime(row.dataNotifica, date_formatEN)
+        
+        try:
+            dateNascita_object = datetime.strptime(row.dataNascita, date_format)
+        except:
+            dateNascita_object = datetime.strptime(row.dataNascita, date_formatEN)
 
+       
+        self.dataAtto =  date_object.strftime("%Y%m%d")
+        self.dataNotificaAtto = date_object.strftime("%Y%m%d")
+        
         temp = row.residenza.split("-")
         tempIndirizzoNumero = temp[0].lstrip().rstrip();
         tempCapCitta = temp[1].lstrip().rstrip().split(" ")
@@ -93,8 +105,6 @@ class VerbaleRow:
         self.Soggetto1_CodiceFiscale = row.codiceFiscale
         self.Soggetto1_Cognome = row.cognome
         self.Soggetto1_Nome = row.nome; 
-
-      
         self.Soggetto1_IndirizzoCodiceBelfiore = datiResidenza.codice
         self.Soggetto1_Indirizzo = indirizzo
         self.Soggetto1_IndirizzoNumero = numero
@@ -102,31 +112,33 @@ class VerbaleRow:
         self.Soggetto1_IndirizzoComune = comune
         self.Soggetto1_IndirizzoSiglaProvincia = datiResidenza.provincia
         self.Soggetto1_NascitaCodiceBelfiore = datiNascita.codice
-        self.Soggetto1_NascitaData = dateNascita_object.strftime('%Y%m%d')
+
+       
+        
         self.Soggetto1_NascitaComune = datiNascita.comune
         self.Soggetto1_NascitaSiglaProvincia = datiNascita.provincia;
         self.Soggetto1_Natura = "1";
         self.Soggetto1_Sesso = row.sesso;
 
-        self.Soggetto2_CodiceFiscale = row.codiceFiscale;
-        self.Soggetto2_Cognome = row.cognome;
+        self.Soggetto2_CodiceFiscale = row.codiceFiscale
+        self.Soggetto2_Cognome = row.cognome
         self.Soggetto2_Nome = row.nome; 
-
-        #self.Soggetto2_IndirizzoCodiceBelfiore = indirizzoCodiceBelfiore; 
-        #self.Soggetto2_Indirizzo = indirizzo;
-        #self.Soggetto2_IndirizzoNumero = indirizzoNumero;
-        #self.Soggetto2_IndirizzoCAP = cap;
-        #self.Soggetto2_IndirizzoComune = comune;
-        #self.Soggetto2_IndirizzoSiglaProvincia = indirizzoSiglaProvincia;
-        #self.Soggetto2_NascitaCodiceBelfiore = nascitaCodiceBelfiore; 
-        #self.Soggetto2_NascitaData = int.Parse(dataNascita.ToString("yyyyMMdd"));
-        #self.Soggetto2_NascitaComune = row.comune_nascita;
-        #self.Soggetto2_NascitaSiglaProvincia = nascitaSiglaProvincia;
+        self.Soggetto2_IndirizzoCodiceBelfiore = datiResidenza.codice
+        self.Soggetto2_Indirizzo = indirizzo
+        self.Soggetto2_IndirizzoNumero = numero
+        self.Soggetto_IndirizzoCAP = cap
+        self.Soggetto2_IndirizzoComune = comune
+        self.Soggetto2_IndirizzoSiglaProvincia = datiResidenza.provincia
+        self.Soggetto2_NascitaCodiceBelfiore = datiNascita.codice
+        self.Soggetto2_NascitaData = dateNascita_object.strftime("%Y%m%d")
+        self.Soggetto2_NascitaComune = datiNascita.comune
+        self.Soggetto2_NascitaSiglaProvincia = datiNascita.provincia;
         self.Soggetto2_Natura = "1";
         self.Soggetto2_Sesso = row.sesso;
-        #self.Tributo1_Codice = tributo1_Codice;
-        #self.Trributo1_Totale = Double.Parse(row.importo_sanzioni_ruolo);
-        #self.Tributo2_Codice = tributo2_Codice;
+
+        self.Tributo1_Codice = "1D80";
+        self.Trributo1_Totale = row.importoSanzioniRuolo;
+        self.Tributo2_Codice = "1F03";
     
  
     
