@@ -5,6 +5,7 @@ import os
 from Verbale import VerbaleRow as vb
 from Source import SourceRow as sr
 from Comune import ComuneRow as cr
+import json
 
 def elabora(inputPath : str,outputPath : str, fileComuni : str, pb : ttk.Progressbar):
    
@@ -62,8 +63,14 @@ def elabora(inputPath : str,outputPath : str, fileComuni : str, pb : ttk.Progres
                 continue
             else:
                 continue
-
+       
+        verbaList = []
+        for key in verbali:
+            x = verbali[key].out()
+            verbaList.append(x)
+       
+        df2 = pd.DataFrame(verbaList)
+        df2.to_excel(outputPath + "/" + filename, index=False)
     
-
     pb.stop    
     

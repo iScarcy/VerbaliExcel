@@ -136,6 +136,56 @@ class VerbaleRow:
         self.Trributo1_Totale = row.importoSanzioniRuolo;
         self.Tributo2_Codice = "1F03";
 
+    def out(self):
+         
+        verbale = {
+                "Protocollo":self.protocollo,
+                "AnnoDebito":"TO DO",
+                "CodTipoAtto":"TO DO",
+                "DataAtto":"TO DO",
+                "DataNotificaAtto":"TO DO",
+                "EstremiAtto":"TO DO",
+                "Canale":"TO DO",
+            
+                "Soggetto1_CodiceFiscale":self.soggetto1_CodiceFiscale,
+                "Soggetto1_Cognome":self.soggetto1_Cognome,
+                "Soggetto1_Nome": self.soggetto1_Nome,
+                "Soggetto1_IndirizzoCodiceBelfiore":"TO DO",
+                "Soggetto1_Indirizzo":"TO DO",
+                "Soggetto1_IndirizzoNumero":"TO DO",
+                "Soggetto1_IndirizzoCAP":"TO DO",
+                "Soggetto1_IndirizzoComune":"TO DO",
+                "Soggetto1_IndirizzoSiglaProvincia":"TO DO",
+                "Soggetto1_NascitaCodiceBelfiore":"TO DO",
+                "Soggetto1_NascitaData":"TO DO",
+                "Soggetto1_NascitaComune": self.soggetto1_NascitaComune,
+                "Soggetto1_NascitaSiglaProvincia":"TO DO",
+                "Soggetto1_Natura":"TO DO",
+                "Soggetto1_Sesso": self.soggetto1_Sesso,
+
+                "Soggetto2_CodiceFiscale":self.soggetto2_CodiceFiscale,
+                "Soggetto2_Cognome":self.soggetto2_Cognome,
+                "Soggetto2_Nome":self.soggetto2_Nome,
+                "Soggetto2_IndirizzoCodiceBelfiore":"TO DO",
+                "Soggetto2_Indirizzo":"TO DO",
+                "Soggetto2_IndirizzoNumero":"TO DO",
+                "Soggetto2_IndirizzoCAP":"TO DO",
+                "Soggetto2_IndirizzoComune":"TO DO",
+                "Soggetto2_IndirizzoSiglaProvincia":"TO DO",
+                "Soggetto2_NascitaCodiceBelfiore":"TO DO",
+                "Soggetto2_NascitaData":"TO DO",
+                "Soggetto2_NascitaComune":self.soggetto2_NascitaComune,
+                "Soggetto2_NascitaSiglaProvincia":"TO DO",
+                "Soggetto2_Natura":"TO DO",
+                "Soggetto2_Sesso":self.soggetto2_Sesso,
+
+                "Tributo1_Codice":"TO DO",
+                "Trributo1_Totale":"TO DO",
+                "Tributo2_Codice":"TO DO"
+            }
+        return verbale
+
+
     
  
     
