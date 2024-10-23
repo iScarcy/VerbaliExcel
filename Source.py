@@ -24,20 +24,20 @@ class SourceRow:
         self.read_data(row=rowSource)
 
     def read_data(self,row:set):
-        self.tipo        =   row["tipo"]
+        self.tipo        =   str(row["tipo"]).upper()
         self.verbale_id  =   row["verbale_id"]
         self.cognome     =   row["cognome"] 
         self.nome        =   row["nome"] 
         self.sesso       =   row["sesso"]
        # self.dataNascita =  row["data_nascita"]
-        self.dataNascita =  str(row["data_nascita"]).replace("-","/").replace("00:00:00","").strip()  
-        self.comuneNascita =   row["comune_nascita"] 
+        self.dataNascita =  row["data_nascita"]
+        self.comuneNascita =   str(row["comune_nascita"]).upper()
         self.statoNascita =   row["stato_nascita"]   
         self.codiceFiscale = row["codice_fiscale"]
         self.residenza = row["residenza"]
-        self.dataViolazione = str(row["data_violazione"]).replace("-","/").replace("00:00:00","").strip()
+        self.dataViolazione = row["data_violazione"]
         self.targa = row["targa"]
-        self.dataNotifica = str(row["data_notifica"]).replace("-","/").replace("00:00:00","").strip()
+        self.dataNotifica = row["data_notifica"]
         self.annoRiferimento = row["anno_riferimento"]
         self.importoSanzioniRuolo = row["importo_sanzioni_ruolo"]
         self.importoSpese = row["importo_spese"]

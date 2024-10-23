@@ -7,12 +7,12 @@ import Core as cr
 root = Tk()
 root.title("Verbali Excel")
 # dimensioni e posizione finestra
-root.geometry("800x600+360+100") 
+root.geometry("800x300+360+100") 
 root.iconbitmap('./excel.ico')
 
 #massimo e minimo ridimensionamento 
 root.minsize(100,100)
-root.maxsize(1920,1900)
+root.maxsize(1200,1024)
 
 input_path = StringVar()
 output_path = StringVar()
@@ -33,18 +33,24 @@ def setFileComuni():
    
 def elabora():
    try:
+    frameElabora_fine.pack_forget();
+    if input_path.get() == output_path.get():
+       raise ValueError("Attenzione, non è possibile indicare la stessa cartella come input e output")
     if not os.path.exists(input_path.get()):
-       raise Exception("Attenzione la cartella di input non esiste")
+       raise ValueError("Attenzione la cartella di input non esiste")
     if not os.path.exists(output_path.get()):
-       raise Exception("Attenzione la cartella di output non esiste")
+       raise ValueError("Attenzione la cartella di output non esiste")
     if not os.path.isfile(file_comuni.get()):
-       raise Exception("Attenzione il file dei comuni indicato non esiste")
+       raise ValueError("Attenzione il file dei comuni indicato non esiste")
     if not (file_comuni.get().endswith(".xlsx")):
-       raise Exception("Attenzione il file comuni selezionato non è un file excel") 
+       raise ValueError("Attenzione il file comuni selezionato non è un file excel") 
    
     frameProgressbar_labelERR.pack_forget()
+    err.set("") 
     cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
-   
+    frameElabora_fine.pack();
+    
+
    except Exception as e:
     err.set(f"Errore: {e}") 
     frameProgressbar_labelERR.pack()
@@ -108,7 +114,8 @@ frameProgressbar_labelERR.pack_forget()
 frameElabora = Frame(root)
 frameElabora_button = Button(frameElabora, text="Elabora", command=elabora)
 frameElabora_button.pack()
-
+frameElabora_fine = Label(frameElabora,text="Elaborazione completata")
+frameElabora_fine.pack_forget()
 
 #prima riga, aggancio frame titolo
 frameTitolo.grid(column=0, row=0, columnspan=3)
