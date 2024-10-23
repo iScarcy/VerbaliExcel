@@ -92,14 +92,27 @@ class VerbaleRow:
         numero = tempIndirizzoNumero[-2:].lstrip().rstrip()
         cap = tempCapCitta[0].lstrip().rstrip()
         comune = tempCapCitta[1].lstrip().rstrip()
-
-        cercaComuneNascita = row.comuneNascita.upper().strip()          
-        setNascita : set = comuni[cercaComuneNascita]
+        
+        try:
+            cercaComuneNascita = row.comuneNascita.upper().strip()          
+            setNascita : set = comuni[cercaComuneNascita]
+            if len(setNascita) <= 0:
+                raise ValueError(f"Il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni")  
+            
+        except Exception as ex:
+            raise ValueError(f"Il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni") 
+        
         datiNascita = cr(setNascita)
 
+        try:
+            cercaComune = comune.upper().strip()  
+            setResidenza : set = comuni[cercaComune]
+            if len(setResidenza) <= 0:
+                raise ValueError(f"Il comune di residenza {cercaComune} non è stato trovato nel file dei comuni")  
+            
+        except Exception as ex:
+            raise ValueError(f"Il comune di residenza {cercaComune} non è stato trovato nel file dei comuni") 
 
-        cercaComune = comune.upper().strip()  
-        setResidenza : set = comuni[cercaComune]
         datiResidenza = cr(setResidenza)
 
 

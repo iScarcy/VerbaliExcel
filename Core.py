@@ -76,11 +76,11 @@ def elabora(inputPath : str,outputPath : str, fileComuni : str, pb : ttk.Progres
                      pb["value"] += increment 
 
             except ValueError as e:
-                f.write(f"{filename}: {e}")
+                f.write(f"{filename}: {e} \n")
                 pb["value"] += increment       
 
             except Exception as ex:
-                f.write(f"{filename}: {ex}")
+                f.write(f"{filename}: {ex} \n")
                 pb["value"] += increment            
 
         

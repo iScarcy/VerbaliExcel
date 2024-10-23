@@ -48,7 +48,7 @@ def elabora():
     frameProgressbar_labelERR.pack_forget()
     err.set("") 
     cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
-    frameElabora_fine.pack();
+    frameElabora_fine.pack()
     
 
    except Exception as e:
@@ -66,7 +66,7 @@ labelTitolo.pack()
 
 #seconda riga, cartella input
 frameInput_titolo = Frame(root)
-frameInput_labelTitolo=Label(frameInput_titolo, text="Cartella Input", font=("Helvetica",14))
+frameInput_labelTitolo=Label(frameInput_titolo, height=2, text="Cartella Input", font=("Helvetica",14))
 frameInput_labelTitolo.pack()
 
 frameInput_field = Frame(root)
@@ -79,7 +79,7 @@ frameInput_buttonInput.pack()
 
 #terza riga, cartella output
 frameOutput_titolo = Frame(root)
-frameOutput_labelTitolo=Label(frameOutput_titolo, text="Cartella Output", font=("Helvetica",14))
+frameOutput_labelTitolo=Label(frameOutput_titolo, height=2, text="Cartella Output", font=("Helvetica",14))
 frameOutput_labelTitolo.pack()
 
 frameOutput_field = Frame(root)
@@ -92,7 +92,7 @@ frameOutput_buttonInput.pack()
 
 #quarta riga, file comuni
 frameFileComuni_titolo = Frame(root)
-frameFileComuni_labelTitolo=Label(frameFileComuni_titolo, text="File comuni", font=("Helvetica",14))
+frameFileComuni_labelTitolo=Label(frameFileComuni_titolo, height=2, text="File comuni", font=("Helvetica",14))
 frameFileComuni_labelTitolo.pack()
 
 frameFileComuni_field = Frame(root)
@@ -104,7 +104,7 @@ frameFileComuni_buttonInput = Button(frameFileComuni_button, text="Scegli", comm
 frameFileComuni_buttonInput.pack()
 
 #quinta riga, progressbar
-frameProgressbar = Frame(root)
+frameProgressbar = Frame(root, height=5)
 progressbar =  ttk.Progressbar(frameProgressbar, orient='horizontal', mode="determinate", length=500)
 progressbar.pack_forget()
 frameProgressbar_labelERR=Label(frameProgressbar, fg="red" , textvariable=err, font=("Helvetica",18))
