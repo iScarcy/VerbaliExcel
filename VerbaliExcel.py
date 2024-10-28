@@ -8,7 +8,7 @@ root = Tk()
 root.title("Verbali Excel")
 # dimensioni e posizione finestra
 root.geometry("800x300+360+100") 
-root.iconbitmap('./excel.ico')
+
 
 #massimo e minimo ridimensionamento 
 root.minsize(100,100)
@@ -48,11 +48,13 @@ def elabora():
     frameProgressbar_labelERR.pack_forget()
     err.set("") 
     cr.elabora(inputPath=input_path.get(),outputPath = output_path.get(), fileComuni = file_comuni.get(), pb=progressbar)
+    progressbar.pack_forget()
     frameElabora_fine.pack()
     
 
    except Exception as e:
     err.set(f"Errore: {e}") 
+    progressbar.pack_forget()
     frameProgressbar_labelERR.pack()
     
 

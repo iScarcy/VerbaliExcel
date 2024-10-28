@@ -77,7 +77,7 @@ class VerbaleRow:
             if cfTest:
                 personaGiuridica = True
             else:
-                raise ValueError("il codice fiscale '" + cf + "' non si riferisce ne ad una persona fisica, se ad una giuridica")
+                raise ValueError(f"verbale:'{self.protocollo}', il codice fiscale '{cf}' non si riferisce ne ad una persona fisica, se ad una giuridica")
 
       
         
@@ -85,22 +85,30 @@ class VerbaleRow:
         self.dataAtto =  dt.strftime("%Y%m%d")
         self.dataNotificaAtto = dt.strftime("%Y%m%d")
         
-        temp = row.residenza.split("-")
-        tempIndirizzoNumero = temp[0].lstrip().rstrip();
-        tempCapCitta = temp[1].lstrip().rstrip().split(" ")
-        indirizzo = tempIndirizzoNumero[:-2].lstrip().rstrip()
-        numero = tempIndirizzoNumero[-2:].lstrip().rstrip()
-        cap = tempCapCitta[0].lstrip().rstrip()
-        comune = tempCapCitta[1].lstrip().rstrip()
+        if "-" in row.residenza:
+            temp = row.residenza.split("-")
+            tempIndirizzoNumero = temp[0].lstrip().rstrip();
+            tempCapCitta = temp[1].lstrip().rstrip().split(" ")
+            indirizzo = tempIndirizzoNumero[:-2].lstrip().rstrip()
+            numero = tempIndirizzoNumero[-2:].lstrip().rstrip()
+            cap = tempCapCitta[0].lstrip().rstrip()
+            comune = tempCapCitta[1].lstrip().rstrip()
+        else:
+            tempIndirizzoNumero = ""
+            tempCapCitta = ""
+            indirizzo = ""
+            numero = ""
+            cap = ""
+            comune = ""
         
         try:
             cercaComuneNascita = row.comuneNascita.upper().strip()          
             setNascita : set = comuni[cercaComuneNascita]
             if len(setNascita) <= 0:
-                raise ValueError(f"Il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni")  
+                raise ValueError(f"verbale:'{self.protocollo}', il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni")  
             
         except Exception as ex:
-            raise ValueError(f"Il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni") 
+            raise ValueError(f"verbale:'{self.protocollo}', il comune di nascita {cercaComuneNascita} non è stato trovato nel file dei comuni") 
         
         datiNascita = cr(setNascita)
 
@@ -108,10 +116,10 @@ class VerbaleRow:
             cercaComune = comune.upper().strip()  
             setResidenza : set = comuni[cercaComune]
             if len(setResidenza) <= 0:
-                raise ValueError(f"Il comune di residenza {cercaComune} non è stato trovato nel file dei comuni")  
+                raise ValueError(f"verbale:'{self.protocollo}', il comune di residenza {cercaComune} non è stato trovato nel file dei comuni")  
             
         except Exception as ex:
-            raise ValueError(f"Il comune di residenza {cercaComune} non è stato trovato nel file dei comuni") 
+            raise ValueError(f"verbale:'{self.protocollo}', il comune di residenza {cercaComune} non è stato trovato nel file dei comuni") 
 
         datiResidenza = cr(setResidenza)
 
@@ -261,10 +269,10 @@ class VerbaleRow:
 
                 "Tributo1_Codice":self.tributo1_codice,
                 "Tributo1_Totale": self.tributo1_totale,
-                "Tributo2_Codice": self.tributo2_totale,
+                "Tributo2_Codice": self.tributo2_codice,
                 "Tributo2_Totale": self.tributo2_totale,
                 "Tributo3_Codice": "",
-                "Tributo3_Totale": "self.tributo2_totale"
+                "Tributo3_Totale": ""
             }
         return verbale
 
