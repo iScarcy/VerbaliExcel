@@ -79,9 +79,13 @@ class VerbaleRow:
             else:
                 raise ValueError(f"verbale:'{self.protocollo}', il codice fiscale '{cf}' non si riferisce ne ad una persona fisica, se ad una giuridica")
 
-      
+              
         
-        dt = parse(row.dataNotifica)
+        if(isinstance(row.dataNotifica, datetime)==False):
+            dt =  parse(row.dataNotifica)
+        else: 
+            dt =  row.dataNotifica
+        
         self.dataAtto =  dt.strftime("%Y%m%d")
         self.dataNotificaAtto = dt.strftime("%Y%m%d")
         
@@ -132,8 +136,10 @@ class VerbaleRow:
         self.soggetto1_Cognome = row.cognome
         
         if personaFisica:
-            dt = parse(row.dataNascita)
-             
+            if(isinstance(row.dataNascita, datetime)==False):
+                dt =  parse(row.dataNascita)
+            else: 
+                dt =  row.dataNascita
         
             self.soggetto1_Nome = row.nome
             self.soggetto1_NascitaData = dt.strftime("%Y%m%d")
