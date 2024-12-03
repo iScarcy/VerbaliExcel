@@ -92,11 +92,11 @@ class VerbaleRow:
         if "-" in row.residenza:
             temp = row.residenza.split("-")
             tempIndirizzoNumero = temp[0].lstrip().rstrip();
-            tempCapCitta = temp[1].lstrip().rstrip().split(" ")
+            tempCapCitta = temp[1].lstrip().rstrip()
             indirizzo = tempIndirizzoNumero[:-2].lstrip().rstrip()
             numero = tempIndirizzoNumero[-2:].lstrip().rstrip()
-            cap = tempCapCitta[0].lstrip().rstrip()
-            comune = tempCapCitta[1].lstrip().rstrip()
+            cap = tempCapCitta[:5]
+            comune = tempCapCitta[5:]
         else:
             tempIndirizzoNumero = ""
             tempCapCitta = ""
